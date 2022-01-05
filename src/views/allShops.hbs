@@ -10,12 +10,12 @@
     <table>
         <th>Name</th>
         <th>Rating</th>
-        {{#each arrayOfShops}}
-            <tr>
-                <td><a href="/shop-details/{{id}}">{{name}}</a></td>
-                <td>{{rating}}</td>
-            </tr>
-        {{/each}}
+            {{#each shops}}
+                <tr>
+                    <td><a href="/shop-details/{{id}}">{{name}}</a></td>
+                    <td>{{rating}}</td>
+                </tr>
+            {{/each}}
     </table>
         <a href="/">back to homepage</a>
 </body>

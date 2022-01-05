@@ -42,7 +42,15 @@ shopRoutes.get("/", (req, res) => {
 })
 
 shopRoutes.get("/shop-list", (req, res) => {
-    res.render("allShops", {arrayOfShops})
+    let shops = arrayOfShops;
+    if (req.query.minRating){ //if minRaiting exsists
+        let rated:shop[] = [];
+        let potato:number = Number.parseFloat(req.query.minRating as string);
+        shops = arrayOfShops.filter(shop => shop.rating >= potato) //edit shops to be new filtered array
+        res.render("allShops", {shops})
+    } else {
+        res.render("allShops", {shops}) //if minRaiting doesnt exsist dont change the array and just send back
+    }
 })
 
 shopRoutes.get("/shop-details/:id", (req, res) => {
@@ -56,6 +64,10 @@ shopRoutes.get("/shop-details/:id", (req, res) => {
             // res.send(`error: Shop not found ${inputID}`)
         }
     }
+})
+
+shopRoutes.get("/shop-search-form", (req, res) => {
+    res.render("shopSearchForm")
 })
 
 export default shopRoutes;
